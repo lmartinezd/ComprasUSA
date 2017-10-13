@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		382135651F901228001392F6 /* UIViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135641F901228001392F6 /* UIViewController+CoreData.swift */; };
+		382135671F905D89001392F6 /* ProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135661F905D89001392F6 /* ProductTableViewController.swift */; };
+		382135691F905F60001392F6 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135681F905F60001392F6 /* ProductTableViewCell.swift */; };
+		383DFCC21F8FD272002A06EB /* ProductRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */; };
 		38B05AAB1F8DB9B400E122BC /* ComprasUSA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38B05AA91F8DB9B400E122BC /* ComprasUSA.xcdatamodeld */; };
 		40DF51071F89153E002FB61F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF51061F89153E002FB61F /* AppDelegate.swift */; };
 		40DF51091F89153E002FB61F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF51081F89153E002FB61F /* FirstViewController.swift */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		382135641F901228001392F6 /* UIViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+CoreData.swift"; sourceTree = "<group>"; };
+		382135661F905D89001392F6 /* ProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewController.swift; sourceTree = "<group>"; };
+		382135681F905F60001392F6 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRegisterViewController.swift; sourceTree = "<group>"; };
 		38B05AAA1F8DB9B400E122BC /* ComprasUSA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComprasUSA.xcdatamodel; sourceTree = "<group>"; };
 		40DF51031F89153E002FB61F /* LuanaRodrigo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuanaRodrigo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40DF51061F89153E002FB61F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,10 +70,14 @@
 				40DF51081F89153E002FB61F /* FirstViewController.swift */,
 				40DF510A1F89153E002FB61F /* SecondViewController.swift */,
 				40DF510C1F89153E002FB61F /* Main.storyboard */,
+				382135641F901228001392F6 /* UIViewController+CoreData.swift */,
 				40DF510F1F89153E002FB61F /* Assets.xcassets */,
 				40DF51111F89153E002FB61F /* LaunchScreen.storyboard */,
 				40DF51141F89153E002FB61F /* Info.plist */,
 				38B05AA91F8DB9B400E122BC /* ComprasUSA.xcdatamodeld */,
+				383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */,
+				382135661F905D89001392F6 /* ProductTableViewController.swift */,
+				382135681F905F60001392F6 /* ProductTableViewCell.swift */,
 			);
 			path = LuanaRodrigo;
 			sourceTree = "<group>";
@@ -143,8 +155,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				40DF510B1F89153E002FB61F /* SecondViewController.swift in Sources */,
+				382135691F905F60001392F6 /* ProductTableViewCell.swift in Sources */,
 				38B05AAB1F8DB9B400E122BC /* ComprasUSA.xcdatamodeld in Sources */,
 				40DF51071F89153E002FB61F /* AppDelegate.swift in Sources */,
+				382135651F901228001392F6 /* UIViewController+CoreData.swift in Sources */,
+				383DFCC21F8FD272002A06EB /* ProductRegisterViewController.swift in Sources */,
+				382135671F905D89001392F6 /* ProductTableViewController.swift in Sources */,
 				40DF51091F89153E002FB61F /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
