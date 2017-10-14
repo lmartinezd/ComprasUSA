@@ -11,7 +11,7 @@ import UIKit
 class ProductRegisterViewController: UIViewController {
 
     @IBOutlet weak var tfName: UITextField!
-    @IBOutlet weak var btProductPhoto: UIButton!
+    @IBOutlet var ivProductImage: UIImageView!
     @IBOutlet weak var tfState: UITextField!
     @IBOutlet weak var tfValue: UITextField!
     @IBOutlet weak var swCard: UISwitch!
@@ -25,11 +25,11 @@ class ProductRegisterViewController: UIViewController {
         
         if product != nil {
             tfName.text = product.name!
-            if let image = product.image as? UIImage {
-                btProductPhoto.setImage(image, for: .normal)
-            }
+            //if let image = product.image as? UIImage {
+                //btProductPhoto.setImage(image, for: .normal)
+            //}
             if let states = product.states { tfState.text = states.name }
-            tfValue.text = "(product.value)"
+            tfValue.text = "\(product.value)"
             swCard.isOn = product.cardPayment
             btSave.setTitle("ATUALIZAR", for: .normal)
         }
@@ -61,12 +61,11 @@ class ProductRegisterViewController: UIViewController {
     }
     
     func selectPhoto(sourceType: UIImagePickerControllerSourceType) {
-        
 
         let imagePicker = UIImagePickerController()
         
         imagePicker.sourceType = sourceType
-        imagePicker.delegate = self as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+//        imagePicker.delegate = self as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)
         present(imagePicker, animated: true, completion: nil)
     }
 
@@ -117,6 +116,12 @@ class ProductRegisterViewController: UIViewController {
         return (true, "")
     }
     
+    func close(_ sender: UIButton?) {
+        if product != nil && product.name == nil {
+            context.delete(product)
+        }
+        dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func btSave(_ sender: UIButton) {
 
@@ -133,6 +138,7 @@ class ProductRegisterViewController: UIViewController {
                     style: .default, handler: nil))
             
             self.present(alertCtrl, animated: true, completion: nil)
+            return
         }
         
         if product == nil {
@@ -140,6 +146,7 @@ class ProductRegisterViewController: UIViewController {
         }
         
         product.name = tfName.text
+        product.cardPayment = swCard.isOn
         product.value = Double(tfValue.text!)!
         
         do {
@@ -155,7 +162,8 @@ class ProductRegisterViewController: UIViewController {
                     style: .default, handler: nil))
             
             self.present(alertCtrl, animated: true, completion: nil)
-            
         }
+        
+        close(nil)
     }
 }

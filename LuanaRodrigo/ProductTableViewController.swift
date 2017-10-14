@@ -11,24 +11,27 @@ import CoreData
 
 class ProductTableViewController: UITableViewController {
     
-    var label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 22))
     var fetchedResultController: NSFetchedResultsController<Product>!
-    
+    var label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 22))
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 106
+        tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
+        
         label.text = "Sua lista está vazia!"
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .black
         
         loadProducts()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let vc = segue.destination as? ProductRegisterViewController {
-            vc.product = fetchedResultController.object(at: tableView.indexPathForSelectedRow!)
+            if (tableView.indexPathForSelectedRow != nil){
+                vc.product = fetchedResultController.object(at: tableView.indexPathForSelectedRow!)
+            }
         }
     }
     
@@ -84,8 +87,10 @@ class ProductTableViewController: UITableViewController {
 }
 
 extension ProductTableViewController: NSFetchedResultsControllerDelegate {
+    
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.reloadData()
     }
+    
 }
 
