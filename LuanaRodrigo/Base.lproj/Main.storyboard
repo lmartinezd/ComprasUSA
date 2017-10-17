@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -152,7 +152,7 @@
                                     <constraint firstAttribute="width" constant="22" id="BEk-E1-y7e"/>
                                 </constraints>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gift" translatesAutoresizingMaskIntoConstraints="NO" id="7Tp-hB-tro">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gift" translatesAutoresizingMaskIntoConstraints="NO" id="7Tp-hB-tro">
                                 <rect key="frame" x="16" y="119" width="288" height="226"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="226" id="SJn-dA-Tdb"/>
@@ -188,7 +188,7 @@
                     <navigationItem key="navigationItem" title="Cadastrar Produto" id="KXl-jW-ugT"/>
                     <connections>
                         <outlet property="btSave" destination="qa3-va-pTb" id="MUj-F2-dRT"/>
-                        <outlet property="ivProductImage" destination="7Tp-hB-tro" id="V75-uU-pbp"/>
+                        <outlet property="ivProductImage" destination="7Tp-hB-tro" id="m8d-uG-y4z"/>
                         <outlet property="swCard" destination="yqZ-9s-dGS" id="jub-wC-VrW"/>
                         <outlet property="tfName" destination="C2S-ZQ-rSk" id="AGE-g1-NKz"/>
                         <outlet property="tfState" destination="3nS-Io-uGa" id="Yyj-Ck-a2u"/>

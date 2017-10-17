@@ -11,7 +11,7 @@ import UIKit
 class ProductRegisterViewController: UIViewController {
 
     @IBOutlet weak var tfName: UITextField!
-    @IBOutlet var ivProductImage: UIImageView!
+    @IBOutlet weak var ivProductImage: UIImageView!
     @IBOutlet weak var tfState: UITextField!
     @IBOutlet weak var tfValue: UITextField!
     @IBOutlet weak var swCard: UISwitch!
@@ -34,6 +34,8 @@ class ProductRegisterViewController: UIViewController {
             btSave.setTitle("ATUALIZAR", for: .normal)
         }
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ProductRegisterViewController.tappedMe))
+        ivProductImage.addGestureRecognizer(tap)
     }
     override func viewWillAppear(_ animated: Bool) {
         
@@ -165,5 +167,41 @@ class ProductRegisterViewController: UIViewController {
         }
         
         close(nil)
+    }
+    
+    @objc func tappedMe()
+    {
+        let alert = UIAlertController(title: "Selecionar produto", message: "De onde você quer escolher o produto?", preferredStyle: .actionSheet)
+        
+        let libraryAction = UIAlertAction(title: "Biblioteca de fotos", style: .default, handler: { (actions) in
+            self.selectPicture(sourceType: .photoLibrary)
+        })
+        alert.addAction(libraryAction)
+        
+        let photosAction = UIAlertAction(title: "Álbum de fotos", style: .default, handler: { (actions) in
+            self.selectPicture(sourceType: .savedPhotosAlbum)
+        })
+        alert.addAction(photosAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func selectPicture(sourceType: UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+}
+
+
+extension ProductRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
+        
+        ivProductImage.image = image
+        dismiss(animated: true, completion: nil)
     }
 }
