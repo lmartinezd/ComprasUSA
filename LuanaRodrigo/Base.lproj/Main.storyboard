@@ -202,7 +202,7 @@
         <!--Ajustes-->
         <scene sceneID="foI-jD-mcU">
             <objects>
-                <viewController id="moW-W1-tgR" sceneMemberID="viewController">
+                <viewController id="moW-W1-tgR" customClass="SettingsViewController" customModule="LuanaRodrigo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SXV-k2-fcP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

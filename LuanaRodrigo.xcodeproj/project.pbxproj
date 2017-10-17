@@ -11,6 +11,7 @@
 		382135671F905D89001392F6 /* ProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135661F905D89001392F6 /* ProductTableViewController.swift */; };
 		382135691F905F60001392F6 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135681F905F60001392F6 /* ProductTableViewCell.swift */; };
 		383DFCC21F8FD272002A06EB /* ProductRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */; };
+		385261191F95AB5300E92951 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385261181F95AB5300E92951 /* SettingsViewController.swift */; };
 		38B05AAB1F8DB9B400E122BC /* ComprasUSA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38B05AA91F8DB9B400E122BC /* ComprasUSA.xcdatamodeld */; };
 		38CF8E0B1F91A454003C566A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CF8E0A1F91A454003C566A /* SettingsTableViewController.swift */; };
 		40DF51071F89153E002FB61F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF51061F89153E002FB61F /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 		382135661F905D89001392F6 /* ProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewController.swift; sourceTree = "<group>"; };
 		382135681F905F60001392F6 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRegisterViewController.swift; sourceTree = "<group>"; };
+		385261181F95AB5300E92951 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		38B05AAA1F8DB9B400E122BC /* ComprasUSA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComprasUSA.xcdatamodel; sourceTree = "<group>"; };
 		38CF8E0A1F91A454003C566A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		40DF51031F89153E002FB61F /* LuanaRodrigo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuanaRodrigo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 				382135661F905D89001392F6 /* ProductTableViewController.swift */,
 				382135681F905F60001392F6 /* ProductTableViewCell.swift */,
 				38CF8E0A1F91A454003C566A /* SettingsTableViewController.swift */,
+				385261181F95AB5300E92951 /* SettingsViewController.swift */,
 			);
 			path = LuanaRodrigo;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				383DFCC21F8FD272002A06EB /* ProductRegisterViewController.swift in Sources */,
 				382135671F905D89001392F6 /* ProductTableViewController.swift in Sources */,
 				40DF51091F89153E002FB61F /* FirstViewController.swift in Sources */,
+				385261191F95AB5300E92951 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
