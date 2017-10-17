@@ -37,8 +37,8 @@ class ProductRegisterViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(ProductRegisterViewController.tappedMe))
         ivProductImage.addGestureRecognizer(tap)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
         
         if product != nil {
@@ -46,8 +46,8 @@ class ProductRegisterViewController: UIViewController {
                 tfState.text = states.name!
             }
         }
-    
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -60,48 +60,6 @@ class ProductRegisterViewController: UIViewController {
         
         //let vc = segue.destination as! StateViewController
         //vc.product = product
-    }
-    
-    func selectPhoto(sourceType: UIImagePickerControllerSourceType) {
-
-        let imagePicker = UIImagePickerController()
-        
-        imagePicker.sourceType = sourceType
-//        imagePicker.delegate = self as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)
-        present(imagePicker, animated: true, completion: nil)
-    }
-
-    
-    @IBAction func selectImage(_ sender: UIButton) {
-        
-        let alert = UIAlertController(title: "Selecionar poster",
-                                      message: "Onde quer selecionar a foto?",
-                                      preferredStyle: .actionSheet)
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraAction = UIAlertAction(title: "Biblioteca de fotos",
-                                             style: .default,
-                                             handler: { (action: UIAlertAction) in
-                                                        self.selectPhoto(sourceType: .camera)
-            })
-            alert.addAction(cameraAction)
-        }
-        
-        let libraryAction = UIAlertAction(title: "Biblioteca de fotos", style: .default) {
-            (action: UIAlertAction) in self.selectPhoto(sourceType: .photoLibrary)
-        }
-        alert.addAction(libraryAction)
-        
-        let photosAction = UIAlertAction(title: "Álbum de fotos", style: .default) {
-            (action: UIAlertAction) in self.selectPhoto(sourceType: .savedPhotosAlbum)
-        }
-        alert.addAction(photosAction)
-        
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
-
     }
     
     func isValidData() -> (valid: Bool, fieldName: String) {
@@ -199,7 +157,7 @@ class ProductRegisterViewController: UIViewController {
 
 
 extension ProductRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
         
         ivProductImage.image = image
         dismiss(animated: true, completion: nil)
