@@ -91,7 +91,7 @@ class ProductRegisterViewController: UIViewController {
         }
         
         let vc = segue.destination as! ProductTableViewController
-        vc.product = product
+        //vc.product = product
     }
     
     func isValidData() -> (valid: Bool, fieldName: String) {
