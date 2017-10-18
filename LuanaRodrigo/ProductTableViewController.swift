@@ -13,6 +13,7 @@ class ProductTableViewController: UITableViewController {
     
     var fetchedResultController: NSFetchedResultsController<Product>!
     var label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 22))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,16 +37,23 @@ class ProductTableViewController: UITableViewController {
     }
     
     func loadProducts() {
+        
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        
         fetchRequest.sortDescriptors = [sortDescriptor]
-        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchedResultController = NSFetchedResultsController(
+            fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
         fetchedResultController.delegate = self
+        
         do {
             try fetchedResultController.performFetch()
         } catch {
             print(error.localizedDescription)
         }
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
