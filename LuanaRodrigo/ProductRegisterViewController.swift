@@ -19,18 +19,37 @@ class ProductRegisterViewController: UIViewController {
     
     var product: Product!
     
+    var pickerView: UIPickerView!
+    var dataSource:[String] = ["New York", "Alabama", "WDC"]
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         if product != nil {
             tfName.text = product.name!
-            //if let image = product.image as? UIImage {
-                //btProductPhoto.setImage(image, for: .normal)
-            //}
-            if let states = product.states { tfState.text = states.name }
+            //if let states = product.states { tfState.text = states.name }
             tfValue.text = "\(product.value)"
             swCard.isOn = product.cardPayment
+            if let image = product.image as? UIImage {
+                ivProductImage.image = image
+            }
+            
+            pickerView = UIPickerView()
+            pickerView.backgroundColor = .white
+            pickerView.delegate = self
+            pickerView.dataSource = self
+            
+            let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
+            
+            let btCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+            let btSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            
+            let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+            toolbar.items = [btCancel, btSpace, btDone]
+            
+            tfState.inputView = pickerView
+            tfState.inputAccessoryView = toolbar
             btSave.setTitle("ATUALIZAR", for: .normal)
         }
         
@@ -38,13 +57,26 @@ class ProductRegisterViewController: UIViewController {
         ivProductImage.addGestureRecognizer(tap)
     }
     
+    @objc func cancel() {
+        tfState.resignFirstResponder()
+    }
+    
+    @objc func done() {
+        tfState.text = dataSource[pickerView.selectedRow(inComponent: 0)]
+        
+        UserDefaults.standard.set(tfState.text!, forKey: "state")
+        cancel()
+    }
+
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if product != nil {
-            if let states = product.states {
-                tfState.text = states.name!
-            }
+            //if let states = product.states {
+                //tfState.text = states.name!
+                tfState.text = UserDefaults.standard.string(forKey: "state")
+            //}
         }
     }
     
@@ -58,8 +90,8 @@ class ProductRegisterViewController: UIViewController {
             product = Product(context: context)
         }
         
-        //let vc = segue.destination as! StateViewController
-        //vc.product = product
+        let vc = segue.destination as! ProductTableViewController
+        vc.product = product
     }
     
     func isValidData() -> (valid: Bool, fieldName: String) {
@@ -77,6 +109,7 @@ class ProductRegisterViewController: UIViewController {
     }
     
     func close(_ sender: UIButton?) {
+        print("test")
         if product != nil && product.name == nil {
             context.delete(product)
         }
@@ -108,7 +141,9 @@ class ProductRegisterViewController: UIViewController {
         product.name = tfName.text
         product.cardPayment = swCard.isOn
         product.value = Double(tfValue.text!)!
-        
+        if ivProductImage != nil {
+            product.image = ivProductImage.image
+        }
         do {
             try context.save()
         } catch  {
@@ -161,5 +196,21 @@ extension ProductRegisterViewController: UIImagePickerControllerDelegate, UINavi
         
         ivProductImage.image = image
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ProductRegisterViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        //Retornando o texto recuperado do objeto dataSource, baseado na linha selecionada
+        return dataSource[row]
+    }
+}
+
+extension ProductRegisterViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1    //Usaremos apenas 1 coluna (component) em nosso pickerView
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataSource.count //O total de linhas será o total de itens em nosso dataSource
     }
 }
