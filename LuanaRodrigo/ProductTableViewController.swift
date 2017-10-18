@@ -13,10 +13,12 @@ class ProductTableViewController: UITableViewController {
     
     var fetchedResultController: NSFetchedResultsController<Product>!
     var label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 22))
+    var product: Product!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
         
         label.text = "Sua lista está vazia!"
@@ -69,7 +71,12 @@ class ProductTableViewController: UITableViewController {
         
         cell.lbName.text = product.name!
         cell.lbValue.text = "\(product.value)"
-
+        
+        if let image = product.image as? UIImage {
+            cell.ivProductPhoto.image = image
+        } else {
+            cell.ivProductPhoto.image = nil
+        }
         return cell
     }
     
