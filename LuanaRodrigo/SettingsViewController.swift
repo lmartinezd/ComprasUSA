@@ -61,7 +61,7 @@ class SettingsViewController: UIViewController {
                 let state = state ?? State(context: self.context)
                 
                 state.name = alert.textFields?.first?.text
-                state.tax = Double((alert.textFields?.last?.text)!)!
+                //state.tax = Double((alert.textFields?.last?.text)!)!
                 
                 do {
                     try self.context.save()

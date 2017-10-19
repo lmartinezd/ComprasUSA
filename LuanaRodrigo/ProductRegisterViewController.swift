@@ -26,6 +26,23 @@ class ProductRegisterViewController: UIViewController {
         
         super.viewDidLoad()
         
+        
+        pickerView = UIPickerView()
+        pickerView.backgroundColor = .white
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
+        
+        let btCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        let btSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        toolbar.items = [btCancel, btSpace, btDone]
+        
+        tfState.inputView = pickerView
+        tfState.inputAccessoryView = toolbar
+        
         if product != nil {
             tfName.text = product.name!
             //if let states = product.states { tfState.text = states.name }
@@ -35,21 +52,6 @@ class ProductRegisterViewController: UIViewController {
                 ivProductImage.image = image
             }
             
-            pickerView = UIPickerView()
-            pickerView.backgroundColor = .white
-            pickerView.delegate = self
-            pickerView.dataSource = self
-            
-            let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
-            
-            let btCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-            let btSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            
-            let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-            toolbar.items = [btCancel, btSpace, btDone]
-            
-            tfState.inputView = pickerView
-            tfState.inputAccessoryView = toolbar
             btSave.setTitle("ATUALIZAR", for: .normal)
         }
         
@@ -113,6 +115,7 @@ class ProductRegisterViewController: UIViewController {
         if product != nil && product.name == nil {
             context.delete(product)
         }
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -159,7 +162,8 @@ class ProductRegisterViewController: UIViewController {
             self.present(alertCtrl, animated: true, completion: nil)
         }
         
-        close(nil)
+        //close(nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func tappedMe()
