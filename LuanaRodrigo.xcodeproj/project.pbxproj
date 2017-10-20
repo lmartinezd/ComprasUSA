@@ -13,9 +13,7 @@
 		383DFCC21F8FD272002A06EB /* ProductRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */; };
 		385261191F95AB5300E92951 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385261181F95AB5300E92951 /* SettingsViewController.swift */; };
 		38B05AAB1F8DB9B400E122BC /* ComprasUSA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38B05AA91F8DB9B400E122BC /* ComprasUSA.xcdatamodeld */; };
-		38CF8E0B1F91A454003C566A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CF8E0A1F91A454003C566A /* SettingsTableViewController.swift */; };
 		40DF51071F89153E002FB61F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF51061F89153E002FB61F /* AppDelegate.swift */; };
-		40DF51091F89153E002FB61F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF51081F89153E002FB61F /* FirstViewController.swift */; };
 		40DF510E1F89153E002FB61F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DF510C1F89153E002FB61F /* Main.storyboard */; };
 		40DF51101F89153E002FB61F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40DF510F1F89153E002FB61F /* Assets.xcassets */; };
 		40DF51131F89153E002FB61F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40DF51111F89153E002FB61F /* LaunchScreen.storyboard */; };
@@ -28,10 +26,8 @@
 		383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRegisterViewController.swift; sourceTree = "<group>"; };
 		385261181F95AB5300E92951 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		38B05AAA1F8DB9B400E122BC /* ComprasUSA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComprasUSA.xcdatamodel; sourceTree = "<group>"; };
-		38CF8E0A1F91A454003C566A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		40DF51031F89153E002FB61F /* LuanaRodrigo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuanaRodrigo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40DF51061F89153E002FB61F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		40DF51081F89153E002FB61F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		40DF510D1F89153E002FB61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		40DF510F1F89153E002FB61F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40DF51121F89153E002FB61F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				40DF51061F89153E002FB61F /* AppDelegate.swift */,
-				40DF51081F89153E002FB61F /* FirstViewController.swift */,
 				40DF510C1F89153E002FB61F /* Main.storyboard */,
 				382135641F901228001392F6 /* UIViewController+CoreData.swift */,
 				40DF510F1F89153E002FB61F /* Assets.xcassets */,
@@ -79,7 +74,6 @@
 				383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */,
 				382135661F905D89001392F6 /* ProductTableViewController.swift */,
 				382135681F905F60001392F6 /* ProductTableViewCell.swift */,
-				38CF8E0A1F91A454003C566A /* SettingsTableViewController.swift */,
 				385261181F95AB5300E92951 /* SettingsViewController.swift */,
 			);
 			path = LuanaRodrigo;
@@ -161,10 +155,8 @@
 				38B05AAB1F8DB9B400E122BC /* ComprasUSA.xcdatamodeld in Sources */,
 				40DF51071F89153E002FB61F /* AppDelegate.swift in Sources */,
 				382135651F901228001392F6 /* UIViewController+CoreData.swift in Sources */,
-				38CF8E0B1F91A454003C566A /* SettingsTableViewController.swift in Sources */,
 				383DFCC21F8FD272002A06EB /* ProductRegisterViewController.swift in Sources */,
 				382135671F905D89001392F6 /* ProductTableViewController.swift in Sources */,
-				40DF51091F89153E002FB61F /* FirstViewController.swift in Sources */,
 				385261191F95AB5300E92951 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
