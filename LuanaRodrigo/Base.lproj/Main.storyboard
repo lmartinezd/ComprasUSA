@@ -320,6 +320,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Ajustes" image="settings" id="Uu3-VA-DKz"/>
                     <connections>
+                        <outlet property="tfDolar" destination="5RY-mO-ojl" id="051-tA-3pG"/>
+                        <outlet property="tfIOF" destination="FtI-qN-1P0" id="dl1-Ea-cQh"/>
                         <outlet property="tvStates" destination="m7p-l2-V1Y" id="Ksx-kZ-YOr"/>
                     </connections>
                 </viewController>

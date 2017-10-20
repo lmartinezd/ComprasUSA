@@ -12,15 +12,25 @@ import CoreData
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var tvStates: UITableView!
+    @IBOutlet weak var tfDolar: UITextField!
+    @IBOutlet weak var tfIOF: UITextField!
     
     var states: [State] = []
     var product: Product!
     var state: State!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         tvStates.delegate = self
         tvStates.dataSource = self
+        
+        tfDolar.text = UserDefaults.standard.string(forKey: "dolar")
+        //print (UserDefaults.standard.string(forKey: "dolar")!)
+        //tfGenre.text = UserDefaults.standard.string(forKey: "genre")
+        tfIOF.text = UserDefaults.standard.string(forKey: "iof")
+        //print (UserDefaults.standard.string(forKey: "iof")!)
         loadStates()
     }
     
@@ -39,6 +49,17 @@ class SettingsViewController: UIViewController {
         }
         
     }
+    
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let state = fetchedResultController.object(at: indexPath)
+//            context.delete(movie)
+//            do {
+//                try context.save()
+//            } catch {
+//                print(error.localizedDescription)
+//            }
+//        }
     
     func showAlert(state: State?) {
         
@@ -95,23 +116,23 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: UITableViewDelegate {
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //
-    //        let state = states[indexPath.row]
-    //        let cell = tvStates.cellForRow(at: indexPath)!
-    //
-    //        if cell.accessoryType == .none {
-    //            cell.accessoryType = .checkmark
-    //            movie.addToCategories(state)
-    //        } else {
-    //            cell.accessoryType = .none
-    //            movie.removeFromCategories(category)
-    //        }
-    //        tableView.deselectRow(at: indexPath, animated: false)
-    //    }
-    
-    //    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let state = states[indexPath.row]
+        let cell = tvStates.cellForRow(at: indexPath)!
+        //
+        //            if cell.accessoryType == .none {
+        //                cell.accessoryType = .checkmark
+        //                movie.addToCategories(state)
+        //            } else {
+        //                cell.accessoryType = .none
+        //                movie.removeFromCategories(category)
+        //            }
+        tvStates.deselectRow(at: indexPath, animated: false)
+        
+    }
+
     private func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> UITableViewRowAction? {
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Excluir")
@@ -144,6 +165,7 @@ extension SettingsViewController: UITableViewDelegate {
         return deleteAction
     }
 }
+
 
 // MARK: - UITableViewDelegate
 extension SettingsViewController: UITableViewDataSource {
