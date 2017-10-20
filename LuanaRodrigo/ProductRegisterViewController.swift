@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ProductRegisterViewController: UIViewController {
 
@@ -18,34 +19,19 @@ class ProductRegisterViewController: UIViewController {
     @IBOutlet weak var btSave: UIButton!
     
     var product: Product!
+    var statePicker: [State] = []
     
     var pickerView: UIPickerView!
-    var dataSource:[String] = ["New York", "Alabama", "WDC"]
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        
-        pickerView = UIPickerView()
-        pickerView.backgroundColor = .white
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
-        
-        let btCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-        let btSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-        toolbar.items = [btCancel, btSpace, btDone]
-        
-        tfState.inputView = pickerView
-        tfState.inputAccessoryView = toolbar
+        getPickerStates ()
         
         if product != nil {
             tfName.text = product.name!
-            //if let states = product.states { tfState.text = states.name }
+            if let states = product.states { tfState.text = states.name }
             tfValue.text = "\(product.value)"
             swCard.isOn = product.cardPayment
             if let image = product.image as? UIImage {
@@ -64,8 +50,9 @@ class ProductRegisterViewController: UIViewController {
     }
     
     @objc func done() {
-        tfState.text = dataSource[pickerView.selectedRow(inComponent: 0)]
+        tfState.text = statePicker[pickerView.selectedRow(inComponent: 0)].name
         
+        //Agora, gravamos esta escolha no UserDefaults
         UserDefaults.standard.set(tfState.text!, forKey: "state")
         cancel()
     }
@@ -74,12 +61,12 @@ class ProductRegisterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if product != nil {
-            //if let states = product.states {
-                //tfState.text = states.name!
-                tfState.text = UserDefaults.standard.string(forKey: "state")
-            //}
-        }
+        tfState.text = UserDefaults.standard.string(forKey: "state")
+        //if product != nil {
+        //    if let states = product.states {
+        //        tfState.text = states.map({($0 as! State).name!})
+        //    }
+        //}
     }
     
     override func didReceiveMemoryWarning() {
@@ -192,6 +179,38 @@ class ProductRegisterViewController: UIViewController {
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    
+    func getPickerStates () {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "State")
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+        
+        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            statePicker = try managedContext.fetch(fetchRequest) as! [State]
+        } catch {
+            print("Fetching State Failed")
+        }
+        
+        pickerView = UIPickerView()
+        pickerView.backgroundColor = .white
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
+        
+        let btCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        let btSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        toolbar.items = [btCancel, btSpace, btDone]
+        
+        tfState.inputView = pickerView
+        tfState.inputAccessoryView = toolbar
+    }
+
 }
 
 
@@ -205,8 +224,8 @@ extension ProductRegisterViewController: UIImagePickerControllerDelegate, UINavi
 
 extension ProductRegisterViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        //Retornando o texto recuperado do objeto dataSource, baseado na linha selecionada
-        return dataSource[row]
+        let states = statePicker[row]
+        return states.name
     }
 }
 
@@ -215,6 +234,7 @@ extension ProductRegisterViewController: UIPickerViewDataSource {
         return 1    //Usaremos apenas 1 coluna (component) em nosso pickerView
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dataSource.count //O total de linhas será o total de itens em nosso dataSource
+        return statePicker.count //O total de linhas será o total de itens em nosso dataSource
     }
 }
+
