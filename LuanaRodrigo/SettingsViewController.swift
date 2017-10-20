@@ -61,7 +61,7 @@ class SettingsViewController: UIViewController {
                 let state = state ?? State(context: self.context)
                 
                 state.name = alert.textFields?.first?.text
-                //state.tax = Double((alert.textFields?.last?.text)!)!
+                state.tax = Double((alert.textFields?.last?.text)!)!
                 
                 do {
                     try self.context.save()
@@ -159,6 +159,7 @@ extension SettingsViewController: UITableViewDataSource {
         print("\(String(describing: state.tax))")
         cell.textLabel?.text = state.name
         cell.detailTextLabel?.text = "\(String(describing: state.tax))"
+        cell.detailTextLabel?.textColor = .red
         return cell
     }
 }
