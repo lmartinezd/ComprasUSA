@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -96,7 +96,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0l5-uV-fkc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="157.5" y="-406.6901408450704"/>
+            <point key="canvasLocation" x="-863" y="-408"/>
         </scene>
         <!--Compras-->
         <scene sceneID="DO4-F7-R7d">
@@ -113,7 +113,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eYw-2q-TGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-727" y="-404"/>
+            <point key="canvasLocation" x="-1674" y="-407"/>
         </scene>
         <!--Cadastrar Produto-->
         <scene sceneID="KSD-jx-h53">
@@ -217,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UnN-PU-bzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="952.5" y="-407.74647887323943"/>
+            <point key="canvasLocation" x="54" y="-408"/>
         </scene>
         <!--Ajustes-->
         <scene sceneID="foI-jD-mcU">
@@ -301,8 +301,8 @@
                                     <outlet property="delegate" destination="moW-W1-tgR" id="upt-bT-7hY"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2r-6Z-pvn">
-                                <rect key="frame" x="154" y="481" width="150" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u2r-6Z-pvn">
+                                <rect key="frame" x="154" y="483" width="150" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Adicionar Estado"/>
                                 <connections>
@@ -327,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qao-Ll-dcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1680" y="437.32394366197184"/>
+            <point key="canvasLocation" x="-624" y="316"/>
         </scene>
         <!--Total da Compra-->
         <scene sceneID="0pG-AJ-Cb5">
@@ -398,7 +398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFu-3W-cYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-928" y="446"/>
+            <point key="canvasLocation" x="-1168" y="1062"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aJZ-ce-YRK">
@@ -417,7 +417,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X16-es-EaZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1583" y="-405"/>
+            <point key="canvasLocation" x="-1847" y="316"/>
         </scene>
     </scenes>
     <resources>
