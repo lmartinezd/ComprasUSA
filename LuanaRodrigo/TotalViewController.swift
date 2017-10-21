@@ -19,10 +19,9 @@ class TotalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         getProducts()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,7 +46,7 @@ class TotalViewController: UIViewController {
     }
     
     func calcular(){
-        let cotacaoD = Double(UserDefaults.standard.string(forKey: "dolar") ?? "3.5")!
+        let cotacaoD = Double(UserDefaults.standard.string(forKey: "dolar") ?? "3.2")!
         let iof = Double(UserDefaults.standard.string(forKey: "iof") ?? "6.38")!
         
         var totDolar: Double = 0.0

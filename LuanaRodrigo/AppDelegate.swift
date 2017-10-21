@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let appDefaults: [String: Any] = ["exchange": "3.2", "iof": "6.38"]
+        let appDefaults: [String: Any] = ["dolar": "3.2", "iof": "6.38"]
         UserDefaults.standard.register(defaults: appDefaults)
         
         return true
