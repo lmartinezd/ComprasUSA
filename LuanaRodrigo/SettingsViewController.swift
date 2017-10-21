@@ -72,13 +72,13 @@ class SettingsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(
             title: alert.title, style: .default, handler: { (action: UIAlertAction) in
-                
                 let state = state ?? State(context: self.context)
                 
-                state.name = alert.textFields?.first?.text
-                state.tax = Double((alert.textFields?.last?.text)!)!
-                
                 do {
+                    state.name = alert.textFields?.first?.text
+                    if (alert.textFields?.last?.text ?? "") != ""{
+                        state.tax = Double((alert.textFields?.last?.text ?? "")!)!
+                    }
                     try self.context.save()
                     self.loadStates()
                 } catch {
@@ -88,8 +88,7 @@ class SettingsViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

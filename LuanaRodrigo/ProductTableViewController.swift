@@ -38,7 +38,7 @@ class ProductTableViewController: UITableViewController {
         }
     }
     
-    func loadProducts() {
+    internal func loadProducts() {
         
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -78,7 +78,7 @@ class ProductTableViewController: UITableViewController {
         let product = fetchedResultController.object(at: indexPath)
         
         cell.lbName.text = product.name!
-        //cell.lbState = product.states.name
+        cell.lbState.text = product.states?.name
         cell.lbValue.text = "\(product.value)"
         
         if let image = product.image as? UIImage {

@@ -173,6 +173,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="BEk-E1-y7e"/>
                                 </constraints>
+                                <connections>
+                                    <segue destination="moW-W1-tgR" kind="show" id="EkN-dZ-Yeb"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gift" translatesAutoresizingMaskIntoConstraints="NO" id="7Tp-hB-tro">
                                 <rect key="frame" x="16" y="119" width="288" height="226"/>
@@ -333,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qao-Ll-dcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2355" y="713"/>
+            <point key="canvasLocation" x="-814" y="721"/>
         </scene>
         <!--Total da Compra-->
         <scene sceneID="0pG-AJ-Cb5">
@@ -404,7 +407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFu-3W-cYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1515" y="394"/>
+            <point key="canvasLocation" x="-2708" y="1181"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aJZ-ce-YRK">
@@ -423,7 +426,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X16-es-EaZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2803" y="-408"/>
+            <point key="canvasLocation" x="-2589" y="273"/>
         </scene>
     </scenes>
     <resources>
@@ -433,6 +436,7 @@
         <image name="settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="EkN-dZ-Yeb"/>
         <segue reference="Ivc-se-KLD"/>
     </inferredMetricsTieBreakers>
 </document>

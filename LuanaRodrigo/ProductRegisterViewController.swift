@@ -20,7 +20,6 @@ class ProductRegisterViewController: UIViewController {
     
     var product: Product!
     var statePicker: [State] = []
-    
     var pickerView: UIPickerView!
     
     override func viewDidLoad() {
@@ -32,7 +31,6 @@ class ProductRegisterViewController: UIViewController {
         if product != nil {
             tfName.text = product.name!
             if let states = product.states { tfState.text = states.name }
-            print(tfState.text ?? "nada")
             tfValue.text = "\(product.value)"
             swCard.isOn = product.cardPayment
             if let image = product.image as? UIImage {
@@ -52,13 +50,9 @@ class ProductRegisterViewController: UIViewController {
     
     @objc func done() {
         tfState.text = statePicker[pickerView.selectedRow(inComponent: 0)].name
-        
-        //Agora, gravamos esta escolha no UserDefaults
-        //UserDefaults.standard.set(tfState.text!, forKey: "state")
         cancel()
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if product != nil {
@@ -67,7 +61,6 @@ class ProductRegisterViewController: UIViewController {
                 
             }
         }
-        //tfState.text = UserDefaults.standard.string(forKey: "state")
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,11 +73,14 @@ class ProductRegisterViewController: UIViewController {
         }
     }
     
-    func isValidData() -> (valid: Bool, fieldName: String) {
+    internal func isValidData() -> (valid: Bool, fieldName: String) {
 
         if tfName.text == "" {
             return (false, "nome")
         }
+//        if (imageCompare) ivProductImage.image == UIImage("gift") {
+//            return (false, "imagem")
+//        }
         if tfState.text == "" {
             return (false, "estado da compra")
         }
@@ -94,7 +90,7 @@ class ProductRegisterViewController: UIViewController {
         return (true, "")
     }
     
-    func close(_ sender: UIButton?) {
+    internal func close(_ sender: UIButton?) {
         if product != nil && product.name == nil {
             context.delete(product)
         }
@@ -122,15 +118,14 @@ class ProductRegisterViewController: UIViewController {
         if product == nil {
             product = Product(context: context)
         }
-        
-        product.name = tfName.text
-        product.states = statePicker[pickerView.selectedRow(inComponent: 0)]
-        product.cardPayment = swCard.isOn
-        product.value = Double(tfValue.text!)!
-        if ivProductImage != nil {
-            product.image = ivProductImage.image
-        }
         do {
+            product.name = tfName.text
+            product.states = statePicker[pickerView.selectedRow(inComponent: 0)]
+            product.cardPayment = swCard.isOn
+            product.value = Double(tfValue.text!)!
+            if ivProductImage != nil {
+                product.image = ivProductImage.image
+            }
             try context.save()
         } catch  {
             let alertCtrl = UIAlertController(
@@ -168,15 +163,14 @@ class ProductRegisterViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func selectPicture(sourceType: UIImagePickerControllerSourceType) {
+    internal func selectPicture(sourceType: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
     
-    
-    func getPickerStates () {
+    internal func getPickerStates () {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "State")
         let sort = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sort]
@@ -211,7 +205,7 @@ class ProductRegisterViewController: UIViewController {
 extension ProductRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
-        
+
         ivProductImage.image = image
         dismiss(animated: true, completion: nil)
     }
@@ -222,6 +216,7 @@ extension ProductRegisterViewController: UIPickerViewDelegate {
     
     internal func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let states = statePicker[row]
+        pickerView.resignFirstResponder()
         return states.name
     }
 
