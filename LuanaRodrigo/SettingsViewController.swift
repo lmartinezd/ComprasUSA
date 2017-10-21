@@ -60,7 +60,16 @@ class SettingsViewController: UIViewController {
 //                print(error.localizedDescription)
 //            }
 //        }
-    
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let state = fetchRequest.object(at: indexPath)
+//            context.delete(state)
+//            do {
+//                try context.save()
+//            } catch {
+//                print(error.localizedDescription)
+//            }
+//        }
     func showAlert(state: State?) {
         
         let alert = UIAlertController(title: "Adicionar Estado", message: nil, preferredStyle: .alert)
