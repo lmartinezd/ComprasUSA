@@ -23,10 +23,23 @@ class ProductRegisterViewController: UIViewController {
     var pickerView: UIPickerView!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         getPickerStates ()
+        
+        pickerView = UIPickerView()
+        pickerView.backgroundColor = .white
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
+        let btCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        let btSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        toolbar.items = [btCancel, btSpace, btDone]
+        
+        tfState.inputView = pickerView
+        tfState.inputAccessoryView = toolbar
         
         if product != nil {
             tfName.text = product.name!
@@ -56,9 +69,10 @@ class ProductRegisterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if product != nil {
+            getPickerStates ()
+            
             if let states = product.states {
                 tfState.text = states.name!
-                
             }
         }
     }
@@ -176,30 +190,12 @@ class ProductRegisterViewController: UIViewController {
         fetchRequest.sortDescriptors = [sort]
         
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
         do {
             statePicker = try managedContext.fetch(fetchRequest) as! [State]
         } catch {
             print("Fetching State Failed")
         }
-        
-        pickerView = UIPickerView()
-        pickerView.backgroundColor = .white
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
-        
-        let btCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-        let btSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-        toolbar.items = [btCancel, btSpace, btDone]
-        
-        tfState.inputView = pickerView
-        tfState.inputAccessoryView = toolbar
     }
-
 }
 
 extension ProductRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
