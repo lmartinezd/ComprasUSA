@@ -32,22 +32,22 @@ class SettingsViewController: UIViewController {
 
         super.viewDidLoad()
         
-        //carregar atualizaçao dos estados em caso tiver
-        loadStates()
-        
         tvStates.estimatedRowHeight = 50
         tvStates.rowHeight = UITableViewAutomaticDimension
-        tvStates.tableFooterView = UIView()
+
         tvStates.delegate = self
         tvStates.dataSource = self
 
+        //carregar lista de estados em caso
+        loadStates()
+
+        tvStates.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tfDolar.text = UserDefaults.standard.string(forKey: "dolar") ?? "3.5"
-        tfIOF.text = UserDefaults.standard.string(forKey: "iof") ?? "6.38"
-        
+        tfDolar.text = UserDefaults.standard.string(forKey: "dolar")// ?? "3.5"
+        tfIOF.text = UserDefaults.standard.string(forKey: "iof") //?? "6.38"
     }
     
     internal func loadStates() {
