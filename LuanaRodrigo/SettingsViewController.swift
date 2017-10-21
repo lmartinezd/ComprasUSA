@@ -37,17 +37,14 @@ class SettingsViewController: UIViewController {
 
         tvStates.delegate = self
         tvStates.dataSource = self
-
-        //carregar lista de estados em caso
-        loadStates()
-
         tvStates.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tfDolar.text = UserDefaults.standard.string(forKey: "dolar")// ?? "3.5"
-        tfIOF.text = UserDefaults.standard.string(forKey: "iof") //?? "6.38"
+        tfDolar.text = UserDefaults.standard.string(forKey: "dolar")
+        tfIOF.text = UserDefaults.standard.string(forKey: "iof")
+        loadStates()
     }
     
     internal func loadStates() {
