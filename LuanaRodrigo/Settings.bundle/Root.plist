@@ -13,44 +13,22 @@
 			<string>Cotação do dólar</string>
 			<key>Key</key>
 			<string>dolar</string>
-			<key>DefaultValue</key>
-			<string>3.20</string>
-			<key>IsSecure</key>
-			<false/>
 			<key>KeyboardType</key>
 			<string>NumbersAndPunctuation</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
+			<key>DefaultValue</key>
+			<string>3.18</string>
 		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>I.O.F (%)</string>
+			<string>IOF (%)</string>
 			<key>Key</key>
-			<string>iof</string>
+			<string>tax</string>
 			<key>DefaultValue</key>
 			<string>6.38</string>
-			<key>IsSecure</key>
-			<false/>
 			<key>KeyboardType</key>
 			<string>NumbersAndPunctuation</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Fotos</string>
-			<key>Key</key>
-			<string>photo</string>
-			<key>DefaultValue</key>
-			<false/>
 		</dict>
 	</array>
 </dict>

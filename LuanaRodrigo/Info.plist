@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>Permite acesso a sua câmera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We want to select one of your photos</string>
+	<string>Permite acesso a suas fotos</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>

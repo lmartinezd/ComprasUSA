@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		381193291F9AD17A002A3387 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 381193281F9AD17A002A3387 /* Settings.bundle */; };
 		382135651F901228001392F6 /* UIViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135641F901228001392F6 /* UIViewController+CoreData.swift */; };
 		382135671F905D89001392F6 /* ProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135661F905D89001392F6 /* ProductTableViewController.swift */; };
 		382135691F905F60001392F6 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135681F905F60001392F6 /* ProductTableViewCell.swift */; };
 		383DFCC21F8FD272002A06EB /* ProductRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */; };
-		384292291F998366009E7DDA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 384292281F998366009E7DDA /* Settings.bundle */; };
 		385261191F95AB5300E92951 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385261181F95AB5300E92951 /* SettingsViewController.swift */; };
 		38B05AAB1F8DB9B400E122BC /* ComprasUSA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38B05AA91F8DB9B400E122BC /* ComprasUSA.xcdatamodeld */; };
 		40DF51071F89153E002FB61F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DF51061F89153E002FB61F /* AppDelegate.swift */; };
@@ -21,11 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		381193281F9AD17A002A3387 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		382135641F901228001392F6 /* UIViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+CoreData.swift"; sourceTree = "<group>"; };
 		382135661F905D89001392F6 /* ProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewController.swift; sourceTree = "<group>"; };
 		382135681F905F60001392F6 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		383DFCC11F8FD271002A06EB /* ProductRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRegisterViewController.swift; sourceTree = "<group>"; };
-		384292281F998366009E7DDA /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		385261181F95AB5300E92951 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		38B05AAA1F8DB9B400E122BC /* ComprasUSA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComprasUSA.xcdatamodel; sourceTree = "<group>"; };
 		40DF51031F89153E002FB61F /* LuanaRodrigo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuanaRodrigo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +77,7 @@
 				382135661F905D89001392F6 /* ProductTableViewController.swift */,
 				382135681F905F60001392F6 /* ProductTableViewCell.swift */,
 				385261181F95AB5300E92951 /* SettingsViewController.swift */,
-				384292281F998366009E7DDA /* Settings.bundle */,
+				381193281F9AD17A002A3387 /* Settings.bundle */,
 			);
 			path = LuanaRodrigo;
 			sourceTree = "<group>";
@@ -141,7 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				384292291F998366009E7DDA /* Settings.bundle in Resources */,
+				381193291F9AD17A002A3387 /* Settings.bundle in Resources */,
 				40DF51131F89153E002FB61F /* LaunchScreen.storyboard in Resources */,
 				40DF51101F89153E002FB61F /* Assets.xcassets in Resources */,
 				40DF510E1F89153E002FB61F /* Main.storyboard in Resources */,

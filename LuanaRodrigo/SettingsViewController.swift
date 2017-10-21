@@ -27,10 +27,8 @@ class SettingsViewController: UIViewController {
         tvStates.dataSource = self
         
         tfDolar.text = UserDefaults.standard.string(forKey: "dolar")
-        //print (UserDefaults.standard.string(forKey: "dolar")!)
-        //tfGenre.text = UserDefaults.standard.string(forKey: "genre")
-        tfIOF.text = UserDefaults.standard.string(forKey: "iof")
-        //print (UserDefaults.standard.string(forKey: "iof")!)
+        tfIOF.text = UserDefaults.standard.string(forKey: "tax")
+        
         loadStates()
     }
     
@@ -122,6 +120,13 @@ class SettingsViewController: UIViewController {
         showAlert(state: state)
     }
     
+    @IBAction func changeDolar(_ sender: UITextField) {
+        UserDefaults.standard.set(sender.text, forKey: "dolar")
+    }
+    
+    @IBAction func changeIOF(_ sender: UITextField) {
+        UserDefaults.standard.set(sender.text, forKey: "tax")
+    }
 }
 
 extension SettingsViewController: UITableViewDelegate {
