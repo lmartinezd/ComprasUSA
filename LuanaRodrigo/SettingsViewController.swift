@@ -32,8 +32,8 @@ class SettingsViewController: UIViewController {
 
         super.viewDidLoad()
         
-        tfDolar.text = UserDefaults.standard.string(forKey: "dolar") ?? "3.2"
-        tfIOF.text = UserDefaults.standard.string(forKey: "iof") ?? "6.38"
+        //carregar atualizaçao dos estados em caso tiver
+        loadStates()
         
         tvStates.estimatedRowHeight = 50
         tvStates.rowHeight = UITableViewAutomaticDimension
@@ -41,7 +41,13 @@ class SettingsViewController: UIViewController {
         tvStates.delegate = self
         tvStates.dataSource = self
 
-        loadStates()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tfDolar.text = UserDefaults.standard.string(forKey: "dolar") ?? "3.5"
+        tfIOF.text = UserDefaults.standard.string(forKey: "iof") ?? "6.38"
+        
     }
     
     internal func loadStates() {
