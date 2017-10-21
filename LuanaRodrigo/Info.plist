@@ -23,9 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Permite acesso a sua câmera</string>
+	<string>Permite acesso a sua câmera?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Permite acesso a suas fotos</string>
+	<string>Permite acesso a suas fotos?</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

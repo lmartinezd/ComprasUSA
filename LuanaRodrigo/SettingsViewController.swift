@@ -28,14 +28,13 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-       
-        tfDolar.text = UserDefaults.standard.string(forKey: "dolar")
-        tfIOF.text = UserDefaults.standard.string(forKey: "tax")
+        
+        tfDolar.text = UserDefaults.standard.string(forKey: "dolar") ?? "3.2"
+        tfIOF.text = UserDefaults.standard.string(forKey: "iof") ?? "6.38"
         
         tvStates.estimatedRowHeight = 50
         tvStates.rowHeight = UITableViewAutomaticDimension
         tvStates.tableFooterView = UIView()
-        
         tvStates.delegate = self
         tvStates.dataSource = self
 
@@ -118,7 +117,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func changeIOF(_ sender: UITextField) {
-        UserDefaults.standard.set(sender.text, forKey: "tax")
+        UserDefaults.standard.set(sender.text, forKey: "iof")
     }
 }
 

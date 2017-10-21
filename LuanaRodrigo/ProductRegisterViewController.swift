@@ -201,7 +201,6 @@ class ProductRegisterViewController: UIViewController {
 extension ProductRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
-
         ivProductImage.image = image
         dismiss(animated: true, completion: nil)
     }
@@ -212,7 +211,6 @@ extension ProductRegisterViewController: UIPickerViewDelegate {
     
     internal func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let states = statePicker[row]
-        pickerView.resignFirstResponder()
         return states.name
     }
 
