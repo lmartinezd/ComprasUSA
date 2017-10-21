@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F5C31631F9BD4E70066336B /* TotalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C31621F9BD4E70066336B /* TotalViewController.swift */; };
 		381193291F9AD17A002A3387 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 381193281F9AD17A002A3387 /* Settings.bundle */; };
 		382135651F901228001392F6 /* UIViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135641F901228001392F6 /* UIViewController+CoreData.swift */; };
 		382135671F905D89001392F6 /* ProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382135661F905D89001392F6 /* ProductTableViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F5C31621F9BD4E70066336B /* TotalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalViewController.swift; sourceTree = "<group>"; };
 		381193281F9AD17A002A3387 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		382135641F901228001392F6 /* UIViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+CoreData.swift"; sourceTree = "<group>"; };
 		382135661F905D89001392F6 /* ProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				382135661F905D89001392F6 /* ProductTableViewController.swift */,
 				382135681F905F60001392F6 /* ProductTableViewCell.swift */,
 				385261181F95AB5300E92951 /* SettingsViewController.swift */,
+				0F5C31621F9BD4E70066336B /* TotalViewController.swift */,
 				381193281F9AD17A002A3387 /* Settings.bundle */,
 			);
 			path = LuanaRodrigo;
@@ -162,6 +165,7 @@
 				383DFCC21F8FD272002A06EB /* ProductRegisterViewController.swift in Sources */,
 				382135671F905D89001392F6 /* ProductTableViewController.swift in Sources */,
 				385261191F95AB5300E92951 /* SettingsViewController.swift in Sources */,
+				0F5C31631F9BD4E70066336B /* TotalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

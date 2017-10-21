@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -341,7 +341,7 @@
         <!--Total da Compra-->
         <scene sceneID="0pG-AJ-Cb5">
             <objects>
-                <viewController id="VSy-Ry-0aV" sceneMemberID="viewController">
+                <viewController id="VSy-Ry-0aV" customClass="TotalViewController" customModule="LuanaRodrigo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nfF-Q3-eiy"/>
                         <viewControllerLayoutGuide type="bottom" id="Old-Mh-L18"/>
@@ -404,6 +404,10 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Total da Compra" image="money" id="2CC-pf-W40"/>
+                    <connections>
+                        <outlet property="tfTotDolar" destination="osh-59-Ve7" id="yrd-xg-ZL9"/>
+                        <outlet property="tfTotReal" destination="Y1D-mj-7qI" id="jfc-nC-6OU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFu-3W-cYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
