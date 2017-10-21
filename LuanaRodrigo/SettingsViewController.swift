@@ -23,6 +23,9 @@ class SettingsViewController: UIViewController {
     var states: [State] = []
     var product: Product!
     var state: State!
+
+    weak var nameAlert: UITextField?
+    weak var taxAlert: UITextField?
     weak var enableSave: UIAlertAction?
     
     override func viewDidLoad() {
@@ -78,13 +81,18 @@ class SettingsViewController: UIViewController {
         
         let btSave = UIAlertAction(
             title: alert.title, style: .default, handler: { (action: UIAlertAction) in
+                
+                guard
+                    let name = alert.textFields?.first?.text,
+                    let tax = alert.textFields?.last?.text
+                else {
+                    return
+                }
                 let state = state ?? State(context: self.context)
                 
                 do {
-                    state.name = alert.textFields?.first?.text
-                    if (alert.textFields?.last?.text ?? "") != ""{
-                        state.tax = Double((alert.textFields?.last?.text ?? "")!)!
-                    }
+                    state.name = name
+                    state.tax = Double(tax)!
                     try self.context.save()
                     self.loadStates()
                 } catch {
@@ -92,16 +100,54 @@ class SettingsViewController: UIViewController {
                 }
         })
         
+        btSave.isEnabled = false
+        self.enableSave = btSave
+        
+        self.nameAlert = alert.textFields?.first
+        self.taxAlert = alert.textFields?.last
+        
         alert.addAction(btSave)
         
-        self.enableSave = btSave
-        btSave.isEnabled = false
-
         self.present(alert, animated: true, completion: nil)
     }
     
     internal func textChanged(_ sender: UITextField){
-        self.enableSave?.isEnabled = (sender.text != "")
+        guard
+            let name = nameAlert?.text,
+            let tax = taxAlert?.text
+            else {
+                self.enableSave?.isEnabled = false
+                return
+        }
+        if (name == "")
+        {
+            self.enableSave?.isEnabled = false
+            return
+        }
+        if name.characters.count == 1 {
+            if (name.characters.first == " ") {
+                self.enableSave?.isEnabled = false
+                return
+            }
+        }
+        if (tax == ""){
+            self.enableSave?.isEnabled = false
+            return
+        }
+        if (tax.characters.count == 1) {
+            if (tax.characters.first == " ") {
+                self.enableSave?.isEnabled = false
+                return
+            }
+        }
+        self.enableSave?.isEnabled = true
+    }
+    
+    @objc func textsChanged(name: String, iof: String){
+        if (name == "") || (iof == "") {
+            return
+        }
+        self.enableSave?.isEnabled = (name != "") && (iof != "")
     }
     
     override func didReceiveMemoryWarning() {
