@@ -23,20 +23,23 @@ class SettingsViewController: UIViewController {
     var states: [State] = []
     var product: Product!
     var state: State!
+    weak var enableSave: UIAlertAction?
     
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
-        
-        tvStates.delegate = self
-        tvStates.dataSource = self
-        
+       
         tfDolar.text = UserDefaults.standard.string(forKey: "dolar")
         tfIOF.text = UserDefaults.standard.string(forKey: "tax")
         
-        loadStates()
-        
+        tvStates.estimatedRowHeight = 50
+        tvStates.rowHeight = UITableViewAutomaticDimension
         tvStates.tableFooterView = UIView()
+        
+        tvStates.delegate = self
+        tvStates.dataSource = self
+
+        loadStates()
     }
     
     internal func loadStates() {
@@ -56,21 +59,25 @@ class SettingsViewController: UIViewController {
     }
     
     internal func showAlert(type: EventType,  state: State?) {
+        
         let title = (type == .add) ? "Adicionar" : "Editar"
         let alert = UIAlertController(title: "\(title) Estado", message: nil, preferredStyle: .alert)
         
         alert.addTextField {(textField: UITextField) in
             textField.placeholder = "nome do estado"
+            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
             if let name = state?.name { textField.text = name }
         }
         
         alert.addTextField {(textField: UITextField) in
             textField.placeholder = "valor do imposto"
+            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
             if let tax = state?.tax { textField.text = "\(tax)" }
         }
         
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(
+        
+        let btSave = UIAlertAction(
             title: alert.title, style: .default, handler: { (action: UIAlertAction) in
                 let state = state ?? State(context: self.context)
                 
@@ -84,11 +91,20 @@ class SettingsViewController: UIViewController {
                 } catch {
                     print(error.localizedDescription)
                 }
-        }))
+        })
         
-        present(alert, animated: true, completion: nil)
+        alert.addAction(btSave)
+        
+        self.enableSave = btSave
+        btSave.isEnabled = false
+
+        self.present(alert, animated: true, completion: nil)
     }
-        
+    
+    internal func textChanged(_ sender: UITextField){
+        self.enableSave?.isEnabled = (sender.text != "")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -123,31 +139,26 @@ extension SettingsViewController: UITableViewDelegate {
             } catch {
                 print(error.localizedDescription)
             }
-            
         }
-        
+
         let editAct = UITableViewRowAction(style: .normal, title: "Editar")
         { (action: UITableViewRowAction, indexPath: IndexPath) in
             let state = self.states[indexPath.row]
             tableView.setEditing(false, animated: true)
             self.showAlert(type: .edit, state: state)
         }
+
         editAct.backgroundColor = .blue
-        
-        self.tvStates.reloadData()
         return [editAct, deleteAct]
     }
 }
 
-
-// MARK: - UITableViewDelegate
 extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return states.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let state = states[indexPath.row]
         cell.textLabel?.text = state.name

@@ -78,9 +78,9 @@ class ProductRegisterViewController: UIViewController {
         if tfName.text == "" {
             return (false, "nome")
         }
-//        if (imageCompare) ivProductImage.image == UIImage("gift") {
-//            return (false, "imagem")
-//        }
+        if ivProductImage.image == nil {
+            return (false, "imagem")
+        }
         if tfState.text == "" {
             return (false, "estado da compra")
         }

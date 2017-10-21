@@ -20,13 +20,14 @@ class ProductTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        label.text = "Sua lista está vazia!"
+        label.text = "Não há produtos cadastrados!"
         label.textAlignment = .center
         label.textColor = .black
         
         loadProducts()
         
         tableView.tableFooterView = UIView()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
