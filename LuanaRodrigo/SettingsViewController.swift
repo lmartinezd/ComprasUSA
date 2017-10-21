@@ -9,6 +9,11 @@
 import UIKit
 import CoreData
 
+enum EventType {
+    case add
+    case edit
+}
+
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var tvStates: UITableView!
@@ -30,9 +35,11 @@ class SettingsViewController: UIViewController {
         tfIOF.text = UserDefaults.standard.string(forKey: "tax")
         
         loadStates()
+        
+        tvStates.tableFooterView = UIView()
     }
     
-    func loadStates() {
+    internal func loadStates() {
         
         let fetchRequest: NSFetchRequest<State> = State.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -48,29 +55,9 @@ class SettingsViewController: UIViewController {
         
     }
     
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let state = fetchedResultController.object(at: indexPath)
-//            context.delete(movie)
-//            do {
-//                try context.save()
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-//        }
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let state = fetchRequest.object(at: indexPath)
-//            context.delete(state)
-//            do {
-//                try context.save()
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-//        }
-    func showAlert(state: State?) {
-        
-        let alert = UIAlertController(title: "Adicionar Estado", message: nil, preferredStyle: .alert)
+    internal func showAlert(type: EventType,  state: State?) {
+        let title = (type == .add) ? "Adicionar" : "Editar"
+        let alert = UIAlertController(title: "\(title) Estado", message: nil, preferredStyle: .alert)
         
         alert.addTextField {(textField: UITextField) in
             textField.placeholder = "nome do estado"
@@ -107,17 +94,8 @@ class SettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     @IBAction func btAddState(_ sender: UIButton) {
-        showAlert(state: state)
+        showAlert(type: .add, state: state)
     }
     
     @IBAction func changeDolar(_ sender: UITextField) {
@@ -131,52 +109,34 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    internal func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let state = states[indexPath.row]
-        let cell = tvStates.cellForRow(at: indexPath)!
-        //
-        //            if cell.accessoryType == .none {
-        //                cell.accessoryType = .checkmark
-        //                movie.addToCategories(state)
-        //            } else {
-        //                cell.accessoryType = .none
-        //                movie.removeFromCategories(category)
-        //            }
-        tvStates.deselectRow(at: indexPath, animated: false)
-        
-    }
-
-    private func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> UITableViewRowAction? {
-        
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Excluir")
+        let deleteAct = UITableViewRowAction(style: .destructive, title: "Excluir")
         { (action: UITableViewRowAction, indexPath: IndexPath) in
             
             let state = self.states[indexPath.row]
             
-            self.context.delete(state)
-            
             do {
-                
+                self.context.delete(state)
                 try self.context.save()
                 self.states.remove(at: indexPath.row)
-                self.tvStates.deleteRows(at: [indexPath], with: .fade)
-                self.tvStates.reloadData()
-                
+                tableView.deleteRows(at: [indexPath], with: .fade)
             } catch {
                 print(error.localizedDescription)
             }
             
         }
         
-        //        let editAction = UITableViewRowAction(style: .normal, title: "Editar") { (action: UITableViewRowAction, indexPath: IndexPath) in
-        //            let category = self.states[indexPath.row]
-        //            tableView.setEditing(false, animated: true)
-        //            self.showAlert(type: .edit, category: category)
-        //        }
-        //        editAction.backgroundColor = .blue
-        //        return [editAction, deleteAction]
-        return deleteAction
+        let editAct = UITableViewRowAction(style: .normal, title: "Editar")
+        { (action: UITableViewRowAction, indexPath: IndexPath) in
+            let state = self.states[indexPath.row]
+            tableView.setEditing(false, animated: true)
+            self.showAlert(type: .edit, state: state)
+        }
+        editAct.backgroundColor = .blue
+        
+        self.tvStates.reloadData()
+        return [editAct, deleteAct]
     }
 }
 
@@ -191,8 +151,6 @@ extension SettingsViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let state = states[indexPath.row]
-        print(state.name!)
-        print("\(String(describing: state.tax))")
         cell.textLabel?.text = state.name
         cell.detailTextLabel?.text = "\(String(describing: state.tax))"
         cell.detailTextLabel?.textColor = .red

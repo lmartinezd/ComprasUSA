@@ -25,6 +25,8 @@ class ProductTableViewController: UITableViewController {
         label.textColor = .black
         
         loadProducts()
+        
+        tableView.tableFooterView = UIView()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -76,6 +78,7 @@ class ProductTableViewController: UITableViewController {
         let product = fetchedResultController.object(at: indexPath)
         
         cell.lbName.text = product.name!
+        //cell.lbState = product.states.name
         cell.lbValue.text = "\(product.value)"
         
         if let image = product.image as? UIImage {

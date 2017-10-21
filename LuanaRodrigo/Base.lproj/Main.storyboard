@@ -6,7 +6,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -76,7 +75,9 @@
                                 <connections>
                                     <outlet property="ivProductPhoto" destination="KjS-vZ-CFv" id="jIP-o0-uuL"/>
                                     <outlet property="lbName" destination="Xyf-Em-3mn" id="vXr-8R-ulK"/>
+                                    <outlet property="lbState" destination="NGB-xX-biZ" id="xUv-er-JTA"/>
                                     <outlet property="lbValue" destination="e4p-ZG-l5I" id="mKS-zh-NGU"/>
+                                    <segue destination="Ubt-tI-22C" kind="show" id="Ivc-se-KLD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -318,11 +319,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3WF-kG-lzk" firstAttribute="trailing" secondItem="u2r-6Z-pvn" secondAttribute="trailing" constant="16" id="08b-b2-3wz"/>
-                            <constraint firstItem="u2r-6Z-pvn" firstAttribute="leading" secondItem="3WF-kG-lzk" secondAttribute="leading" constant="154" id="aHU-Gh-8C4"/>
-                            <constraint firstItem="3WF-kG-lzk" firstAttribute="bottom" secondItem="u2r-6Z-pvn" secondAttribute="bottom" constant="8" id="wAS-Fv-F57"/>
+                            <constraint firstAttribute="trailing" secondItem="u2r-6Z-pvn" secondAttribute="trailing" constant="16" id="08b-b2-3wz"/>
+                            <constraint firstItem="u2r-6Z-pvn" firstAttribute="leading" secondItem="SXV-k2-fcP" secondAttribute="leading" constant="154" id="aHU-Gh-8C4"/>
+                            <constraint firstItem="E90-XE-2Em" firstAttribute="top" secondItem="u2r-6Z-pvn" secondAttribute="bottom" constant="8" id="wAS-Fv-F57"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="3WF-kG-lzk"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Ajustes" image="settings" id="Uu3-VA-DKz"/>
                     <connections>
@@ -333,7 +333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qao-Ll-dcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-624" y="316"/>
+            <point key="canvasLocation" x="-2355" y="713"/>
         </scene>
         <!--Total da Compra-->
         <scene sceneID="0pG-AJ-Cb5">
@@ -404,7 +404,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFu-3W-cYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1168" y="1062"/>
+            <point key="canvasLocation" x="-1515" y="394"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aJZ-ce-YRK">
@@ -423,7 +423,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X16-es-EaZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1847" y="316"/>
+            <point key="canvasLocation" x="-2803" y="-408"/>
         </scene>
     </scenes>
     <resources>
@@ -432,4 +432,7 @@
         <image name="money" width="25" height="25"/>
         <image name="settings" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ivc-se-KLD"/>
+    </inferredMetricsTieBreakers>
 </document>

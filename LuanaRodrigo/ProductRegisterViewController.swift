@@ -32,6 +32,7 @@ class ProductRegisterViewController: UIViewController {
         if product != nil {
             tfName.text = product.name!
             if let states = product.states { tfState.text = states.name }
+            print(tfState.text ?? "nada")
             tfValue.text = "\(product.value)"
             swCard.isOn = product.cardPayment
             if let image = product.image as? UIImage {
@@ -53,20 +54,20 @@ class ProductRegisterViewController: UIViewController {
         tfState.text = statePicker[pickerView.selectedRow(inComponent: 0)].name
         
         //Agora, gravamos esta escolha no UserDefaults
-        UserDefaults.standard.set(tfState.text!, forKey: "state")
+        //UserDefaults.standard.set(tfState.text!, forKey: "state")
         cancel()
     }
 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        tfState.text = UserDefaults.standard.string(forKey: "state")
-        //if product != nil {
-        //    if let states = product.states {
-        //        tfState.text = states.map({($0 as! State).name!})
-        //    }
-        //}
+        if product != nil {
+            if let states = product.states {
+                tfState.text = states.name!
+                
+            }
+        }
+        //tfState.text = UserDefaults.standard.string(forKey: "state")
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,13 +75,9 @@ class ProductRegisterViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
         if product == nil {
             product = Product(context: context)
         }
-        
-        let vc = segue.destination as! ProductTableViewController
-        //vc.product = product
     }
     
     func isValidData() -> (valid: Bool, fieldName: String) {
@@ -98,11 +95,9 @@ class ProductRegisterViewController: UIViewController {
     }
     
     func close(_ sender: UIButton?) {
-        print("test")
         if product != nil && product.name == nil {
             context.delete(product)
         }
-        
         dismiss(animated: true, completion: nil)
     }
     
@@ -129,6 +124,7 @@ class ProductRegisterViewController: UIViewController {
         }
         
         product.name = tfName.text
+        product.states = statePicker[pickerView.selectedRow(inComponent: 0)]
         product.cardPayment = swCard.isOn
         product.value = Double(tfValue.text!)!
         if ivProductImage != nil {
@@ -148,8 +144,7 @@ class ProductRegisterViewController: UIViewController {
             
             self.present(alertCtrl, animated: true, completion: nil)
         }
-        
-        //close(nil)
+
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -213,27 +208,32 @@ class ProductRegisterViewController: UIViewController {
 
 }
 
-
 extension ProductRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
         
         ivProductImage.image = image
         dismiss(animated: true, completion: nil)
     }
+    
 }
 
 extension ProductRegisterViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    
+    internal func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let states = statePicker[row]
         return states.name
     }
+
 }
 
 extension ProductRegisterViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    
+    internal func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1    //Usaremos apenas 1 coluna (component) em nosso pickerView
     }
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    
+    internal func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return statePicker.count //O total de linhas será o total de itens em nosso dataSource
     }
 }
