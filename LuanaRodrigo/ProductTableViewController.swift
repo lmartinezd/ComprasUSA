@@ -88,7 +88,7 @@ class ProductTableViewController: UITableViewController {
         
         cell.lbName.text = product.name!
         cell.lbState.text = product.states?.name
-        cell.lbValue.text = "\(product.value)"
+        cell.lbValue.text = "U$$ \(product.value)"
         
         if let image = product.image as? UIImage {
             cell.ivProductPhoto.image = image
