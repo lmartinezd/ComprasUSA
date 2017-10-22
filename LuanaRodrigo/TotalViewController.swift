@@ -18,13 +18,15 @@ class TotalViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tfTotDolar.text = "0.0"
+        tfTotReal.text = "0.0"
         getProducts()
-        print("\(products.count)")
         if products.count > 0 {
             calcular()
         }
     }
-    override func didReceiveMemoryWarning() {
+
+    internal override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -34,13 +36,12 @@ class TotalViewController: UIViewController {
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
             self.products = try managedContext.fetch(fetchRequest) as! [Product]
-            //calcular()
         } catch {
             print(error.localizedDescription)
         }
     }
     
-    func calcular(){
+    internal func calcular(){
         let cotacaoD = Double(UserDefaults.standard.string(forKey: "dolar") ?? "3.2")!
         let iof = Double(UserDefaults.standard.string(forKey: "iof") ?? "6.38")!
         
@@ -51,7 +52,7 @@ class TotalViewController: UIViewController {
         var totReal: Double = 0.0
         
         for product in products {
-            print("\(products)")
+
             // total em dolar a exibir.
             totDolar += product.value
             
@@ -65,18 +66,6 @@ class TotalViewController: UIViewController {
             
             // faz a soma do valor do produto + taxas.
             totDolarPlusTax += (product.value + taxProd + iofProd)
-            
-            print("log")
-            print("STATE: ", product.states?.name! ?? "Nenhum")
-            print("TAX State: \(Double((product.states?.tax)!))")
-            
-            print("VAL U$$: \(product.value)")
-            print("Cartão: \(product.cardPayment)")
-            print("IOF PROD: \(iofProd)")
-            print("TAX PROD: \(taxProd)")
-            print("U$$+TAX+IOF: \((product.value + taxProd + iofProd))")
-            
-            print("SOMAComTAX: \(totDolarPlusTax)")
 
             // resseta variaveis de IOF e Tax para calculo do próximo produto
             iofProd = 0.0
@@ -90,40 +79,5 @@ class TotalViewController: UIViewController {
         tfTotDolar.text = String(format: "%.2f", totDolar)
         tfTotReal.text = String(format: "%.2f", totReal)
     }
-
-    func calcularObsolete(){
-        let cotacaoD = Double(UserDefaults.standard.string(forKey: "dolar") ?? "3.2")!
-        let iof = Double(UserDefaults.standard.string(forKey: "iof") ?? "6.38")!
-        
-        var totDolar: Double = 0.0
-        var totReal: Double = 0.0
-        var sumReal: Double = 0.0
-        
-        for product in products {
-            // total em dolar
-            totDolar += product.value
-            
-            sumReal = product.value + (product.value * (Double((product.states?.tax)!) / 100))
-            
-            //total em dolar
-            if product.cardPayment {
-                sumReal += sumReal * (iof / 100)
-            }
-            totReal += sumReal
-        }
-        totReal = totReal * cotacaoD
-        
-        tfTotDolar.text = String(format: "%.2f", totDolar)
-        tfTotReal.text = String(format: "%.2f", totReal)
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 
