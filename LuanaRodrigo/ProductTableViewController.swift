@@ -16,7 +16,7 @@ class ProductTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -27,7 +27,10 @@ class ProductTableViewController: UITableViewController {
         loadProducts()
         
         tableView.tableFooterView = UIView()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,9 +77,14 @@ class ProductTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! ProductTableViewCell
         let product = fetchedResultController.object(at: indexPath)
+
+        if product.objectID.isTemporaryID {
+            context.delete(product)
+            return cell
+        }
         
         cell.lbName.text = product.name!
         cell.lbState.text = product.states?.name
