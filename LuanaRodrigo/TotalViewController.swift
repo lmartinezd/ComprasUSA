@@ -17,11 +17,10 @@ class TotalViewController: UIViewController {
     var fetchedProductsController: NSFetchedResultsController<Product>!
     var product: [Product] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getProducts()
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
