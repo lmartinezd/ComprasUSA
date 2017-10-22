@@ -14,7 +14,6 @@ class TotalViewController: UIViewController {
     @IBOutlet weak var tfTotDolar: UILabel!
     @IBOutlet weak var tfTotReal: UILabel!
     
-    var fetchedProductsController: NSFetchedResultsController<Product>!
     var product: [Product] = []
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,18 +25,11 @@ class TotalViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getProducts() {
-        let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
-        
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        fetchedProductsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        fetchedProductsController.delegate = self
+    internal func getProducts() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
+        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
-            try fetchedProductsController.performFetch()
-            self.product = fetchedProductsController.fetchedObjects!
+            self.product = try managedContext.fetch(fetchRequest) as! [Product]
             calcular()
         } catch {
             print(error.localizedDescription)
@@ -61,7 +53,6 @@ class TotalViewController: UIViewController {
             //total em dolar
             if product.cardPayment {
                 sumReal += sumReal * (iof / 100)
-                print (" iof : \(sumReal)")
             }
             totReal += sumReal
         }
@@ -81,10 +72,3 @@ class TotalViewController: UIViewController {
     */
 }
 
-
-extension TotalViewController : NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        product = fetchedProductsController.fetchedObjects!
-        calcular()
-    }
-}
