@@ -62,8 +62,10 @@ class ProductRegisterViewController: UIViewController {
     }
     
     @objc func done() {
-        tfState.text = statePicker[pickerView.selectedRow(inComponent: 0)].name
-        cancel()
+        if pickerView.numberOfRows(inComponent: 0) > 0 {
+            tfState.text = statePicker[pickerView.selectedRow(inComponent: 0)].name
+            cancel()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
