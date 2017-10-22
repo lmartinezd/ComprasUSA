@@ -14,11 +14,15 @@ class TotalViewController: UIViewController {
     @IBOutlet weak var tfTotDolar: UILabel!
     @IBOutlet weak var tfTotReal: UILabel!
     
-    var product: [Product] = []
+    var products: [Product] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getProducts()
+        print("\(products.count)")
+        if products.count > 0 {
+            calcular()
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -29,8 +33,8 @@ class TotalViewController: UIViewController {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Product")
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
-            self.product = try managedContext.fetch(fetchRequest) as! [Product]
-            calcular()
+            self.products = try managedContext.fetch(fetchRequest) as! [Product]
+            //calcular()
         } catch {
             print(error.localizedDescription)
         }
@@ -46,8 +50,8 @@ class TotalViewController: UIViewController {
         var taxProd: Double = 0.0
         var totReal: Double = 0.0
         
-        for product in product {
-            
+        for product in products {
+            print("\(products)")
             // total em dolar a exibir.
             totDolar += product.value
             
@@ -95,7 +99,7 @@ class TotalViewController: UIViewController {
         var totReal: Double = 0.0
         var sumReal: Double = 0.0
         
-        for product in product {
+        for product in products {
             // total em dolar
             totDolar += product.value
             
