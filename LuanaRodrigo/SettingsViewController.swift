@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController {
         
         tvStates.estimatedRowHeight = 50
         tvStates.rowHeight = UITableViewAutomaticDimension
-
+//        loadStates()
         tvStates.delegate = self
         tvStates.dataSource = self
         tvStates.tableFooterView = UIView()
@@ -42,9 +42,9 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tfDolar.text = UserDefaults.standard.string(forKey: "dolar")
-        tfIOF.text = UserDefaults.standard.string(forKey: "iof")
-        loadStates()
+//        tfDolar.text = UserDefaults.standard.string(forKey: "dolar")
+//        tfIOF.text = UserDefaults.standard.string(forKey: "iof")
+        //loadStates()
     }
     
     internal func loadStates() {
@@ -146,13 +146,6 @@ class SettingsViewController: UIViewController {
         self.enableSave?.isEnabled = true
     }
     
-    @objc func textsChanged(name: String, iof: String){
-        if (name == "") || (iof == "") {
-            return
-        }
-        self.enableSave?.isEnabled = (name != "") && (iof != "")
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -213,5 +206,10 @@ extension SettingsViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = "\(String(describing: state.tax))"
         cell.detailTextLabel?.textColor = .red
         return cell
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        tfDolar.text = UserDefaults.standard.string(forKey: "dolar")
+        tfIOF.text = UserDefaults.standard.string(forKey: "iof")
+        loadStates()
     }
 }
